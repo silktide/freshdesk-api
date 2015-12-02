@@ -1,0 +1,19 @@
+services:
+    client:
+        class: Silktide\FreshdeskApi\Client
+        arguments:
+          - "@guzzle"
+          - "@responseFactory"
+          - "%freshdeskDomain%"
+          - "%usernameOrToken%"
+          - "%password%"
+
+    guzzle:
+        class: GuzzleHttp\Client
+    responseFactory:
+        class: Silktide\FreshdeskApi\ResponseFactory
+
+arguments:
+    freshdeskDomain:
+    usernameOrToken:
+    password:
