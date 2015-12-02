@@ -1,5 +1,9 @@
 # Freshdesk API client
 
+[![Build Status](https://travis-ci.org/silktide/freshdesk-api.svg?branch=master)](https://travis-ci.org/silktide/freshdesk-api)
+[![Code Climate](https://codeclimate.com/github/silktide/freshdesk-api/badges/gpa.svg)](https://codeclimate.com/github/silktide/freshdesk-api)
+[![Test Coverage](https://codeclimate.com/github/silktide/freshdesk-api/badges/coverage.svg)](https://codeclimate.com/github/silktide/freshdesk-api/coverage)
+
 A PHP API client for the Freshdesk API.
 
 ## Installation
