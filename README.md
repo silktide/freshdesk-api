@@ -8,7 +8,7 @@ A PHP API client for the Freshdesk API.
 
 ## Installation
 
-Composer require silktide/freshdesk-api
+    composer require silktide/freshdesk-api
 
 ## Usage
 
