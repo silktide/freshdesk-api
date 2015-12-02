@@ -4,6 +4,7 @@ services:
         arguments:
           - "@guzzle"
           - "@responseFactory"
+          - "@interpolator"
           - "%freshdeskDomain%"
           - "%usernameOrToken%"
           - "%password%"
@@ -12,6 +13,12 @@ services:
         class: GuzzleHttp\Client
     responseFactory:
         class: Silktide\FreshdeskApi\ResponseFactory
+    stringifier:
+        class: mef\Stringifier\Stringifier
+    interpolator:
+        class: mef\StringInterpolation\PlaceholderInterpolator
+        arguments:
+          - "@stringifier"
 
 arguments:
     freshdeskDomain:

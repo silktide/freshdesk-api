@@ -32,12 +32,12 @@ Password is optional and should be omitted if you're using an API key.
 
 ## Supported requests
  
-Currently, this library only supports submitting a ticket.
+### Submitting a ticket
 
-    $client->submitTicket(
-        'A message',
-        'A subject',
-        'email@domain.com",
-        \Silktide\FreshdeskApi\Constant::PRIORITY_MEDIUM, // Defaults to low if omitted
-        \Silktide\FreshdeskApi\Constant::STATUS_OPEN // Defaults to open if omitted
-    );
+    $client->submitTicket([
+        'description' => 'A message',
+        'subject' => 'A subject',
+        'email' => 'email@domain.com",
+        'priority '=> \Silktide\FreshdeskApi\Constant::PRIORITY_MEDIUM
+        'status' => \Silktide\FreshdeskApi\Constant::STATUS_OPEN
+    ]);

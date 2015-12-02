@@ -6,6 +6,8 @@
 namespace Silktide\FreshdeskApi;
 
 use GuzzleHttp\Client as Guzzle;
+use mef\Stringifier\Stringifier;
+use mef\StringInterpolation\PlaceholderInterpolator;
 
 abstract class ClientFactory
 {
@@ -22,6 +24,7 @@ abstract class ClientFactory
     {
         $guzzle = new Guzzle();
         $responseFactory = new ResponseFactory();
-        return new Client($guzzle, $responseFactory, $freshdeskDomain, $usernameOrToken, $password);
+        $interpolator = new PlaceholderInterpolator(new Stringifier());
+        return new Client($guzzle, $responseFactory, $interpolator, $freshdeskDomain, $usernameOrToken, $password);
     }
 }

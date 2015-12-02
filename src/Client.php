@@ -8,6 +8,7 @@ namespace Silktide\FreshdeskApi;
 use GuzzleHttp\Client as Guzzle;
 use GuzzleHttp\Psr7\Response as GuzzleResponse;
 use InvalidArgumentException;
+use mef\StringInterpolation\PlaceholderInterpolator;
 
 class Client
 {
@@ -27,6 +28,11 @@ class Client
     protected $responseFactory;
 
     /**
+     * @var PlaceholderInterpolator
+     */
+    protected $interpolator;
+
+    /**
      * @var string
      */
     protected $freshdeskDomain;
@@ -40,7 +46,9 @@ class Client
      * @var string[]
      */
     protected $endpoints = [
-        'tickets' => '/helpdesk/tickets.json'
+        'tickets' => '/helpdesk/tickets.json',
+        'contact' => '/helpdesk/contacts/{user_id}.json',
+        'contacts' => '/helpdesk/contacts.json'
     ];
 
 
@@ -49,14 +57,22 @@ class Client
      *
      * @param Guzzle $guzzle
      * @param ResponseFactory $responseFactory
+     * @param PlaceholderInterpolator $interpolator
      * @param string $freshdeskDomain
      * @param string $usernameOrToken
      * @param string $password
      */
-    public function __construct($guzzle, $responseFactory, $freshdeskDomain, $usernameOrToken, $password = "X")
-    {
+    public function __construct(
+        Guzzle $guzzle,
+        ResponseFactory $responseFactory,
+        PlaceholderInterpolator $interpolator,
+        $freshdeskDomain,
+        $usernameOrToken,
+        $password = "X"
+    ) {
         $this->guzzle = $guzzle;
         $this->responseFactory = $responseFactory;
+        $this->interpolator = $interpolator;
         $this->setFreshdeskDomain($freshdeskDomain);
         $this->setUsernameOrToken($usernameOrToken);
         $this->setPassword($password);
@@ -112,51 +128,77 @@ class Client
     /**
      * Submit a Freshdesk ticket
      *
-     * @param string $description
-     * @param string $subject
-     * @param string $email
-     * @param int $priority
-     * @param int $status
+     * @param $properties
      * @return Response
      */
-    public function submitTicket(
-        $description,
-        $subject,
-        $email,
-        $priority = Constant::PRIORITY_LOW,
-        $status = Constant::STATUS_OPEN
-    ) {
+    public function addTicket($properties)
+    {
         $content = [
-            'helpdesk_ticket' => [
-                "description" => $description,
-                "subject" => $subject,
-                "email" => $email,
-                "priority" => $priority,
-                "status" => $status
-            ]
+            'helpdesk_ticket' => $properties
         ];
-        return $this->makeRequest('POST', 'tickets', $content);
+        return $this->makeRequest('POST', $this->buildUrl('tickets'), $content);
     }
+
+    /**
+     * Get a contact
+     *
+     * @param string $id
+     * @return array
+     */
+    public function getContact($id)
+    {
+        return $this->makeRequest('GET', $this->buildUrl('contact', ['user_id' => $id]));
+    }
+
+    /**
+     * Add a new contact
+     *
+     * @param $properties
+     * @return Response
+     */
+    public function addContact($properties)
+    {
+        $content = [
+            'user' => $properties
+        ];
+        return $this->makeRequest('POST', $this->buildUrl('contacts'), $content);
+    }
+
+    /**
+     * Work out a URL
+     *
+     * @param $endpoint
+     * @param array $props
+     * @return string
+     */
+    public function buildUrl($endpoint, $props = [])
+    {
+        $endpointUri = $this->endpoints[$endpoint];
+
+        $path = $this->interpolator->getInterpolatedString($endpointUri, $props);
+        return $this->freshdeskDomain.$path;
+    }
+
 
     /**
      * Make a request to the API
      *
      * @param string $method
-     * @param string $endpoint
+     * @param string $url
      * @param array $content
      * @return array
      */
-    protected function makeRequest($method, $endpoint, $content = null)
+    protected function makeRequest($method, $url, $content = null)
     {
-        $url = $this->freshdeskDomain.$this->endpoints[$endpoint];
-        $response = $this->guzzle->request(
-            $method,
-            $url,
-            [
-                'json' => $content,
-                'auth' => [$this->usernameOrToken, $this->password]
-            ]
-        );
+        $props = [
+            'auth' => [$this->usernameOrToken, $this->password]
+        ];
+
+        if (isset($content)) {
+            $props['json'] = $content;
+        }
+
+        $response = $this->guzzle->request($method, $url, $props);
 
         return $this->createResponse($response);
     }

@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "b8feff5be26f582a70e8fbeb4884298c",
-    "content-hash": "5336982685e8b7f2cfd467f68ac2dec8",
+    "hash": "231c514e5462189537832bc710761433",
+    "content-hash": "43f5e8cff36b6d5f3e1a0580dc8dab28",
     "packages": [
         {
             "name": "guzzlehttp/guzzle",
@@ -179,6 +179,97 @@
             "time": "2015-11-03 01:34:55"
         },
         {
+            "name": "mefworks/string-interpolation",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://bitbucket.org/leverton/mefworks-string-interpolation.git",
+                "reference": "d96a7569718aaaab5624ba5d2f666051c8c03bb1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://bitbucket.org/leverton/mefworks-string-interpolation/get/d96a7569718aaaab5624ba5d2f666051c8c03bb1.zip",
+                "reference": "d96a7569718aaaab5624ba5d2f666051c8c03bb1",
+                "shasum": ""
+            },
+            "require": {
+                "mefworks/stringifier": "~1.0",
+                "php": ">=5.5",
+                "psr/log": "~1.0"
+            },
+            "provide": {
+                "psr/log-implementation": "1.0.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.3.*"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "mef\\StringInterpolation\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Matthew Leverton"
+                }
+            ],
+            "description": "Interpolate strings by replacing placeholders with data from an array.",
+            "time": "2014-10-18 04:30:03"
+        },
+        {
+            "name": "mefworks/stringifier",
+            "version": "v1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://bitbucket.org/leverton/mefworks-stringify.git",
+                "reference": "a4eca4f44da43e40789e389e993d0edbea71d57a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://bitbucket.org/leverton/mefworks-stringify/get/a4eca4f44da43e40789e389e993d0edbea71d57a.zip",
+                "reference": "a4eca4f44da43e40789e389e993d0edbea71d57a",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "3.7.*"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "mef\\Stringifier\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Matthew Leverton"
+                }
+            ],
+            "description": "Convert any variable into a string.",
+            "time": "2014-10-17 23:24:55"
+        },
+        {
             "name": "psr/http-message",
             "version": "1.0",
             "source": {
@@ -226,6 +317,44 @@
                 "response"
             ],
             "time": "2015-05-04 20:22:00"
+        },
+        {
+            "name": "psr/log",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-fig/log.git",
+                "reference": "fe0936ee26643249e916849d48e3a51d5f5e278b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-fig/log/zipball/fe0936ee26643249e916849d48e3a51d5f5e278b",
+                "reference": "fe0936ee26643249e916849d48e3a51d5f5e278b",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Psr\\Log\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "PHP-FIG",
+                    "homepage": "http://www.php-fig.org/"
+                }
+            ],
+            "description": "Common interface for logging libraries",
+            "keywords": [
+                "log",
+                "psr",
+                "psr-3"
+            ],
+            "time": "2012-12-21 11:40:51"
         }
     ],
     "packages-dev": [
@@ -912,44 +1041,6 @@
                 "xunit"
             ],
             "time": "2015-10-02 06:51:40"
-        },
-        {
-            "name": "psr/log",
-            "version": "1.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/php-fig/log.git",
-                "reference": "fe0936ee26643249e916849d48e3a51d5f5e278b"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/log/zipball/fe0936ee26643249e916849d48e3a51d5f5e278b",
-                "reference": "fe0936ee26643249e916849d48e3a51d5f5e278b",
-                "shasum": ""
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "Psr\\Log\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "PHP-FIG",
-                    "homepage": "http://www.php-fig.org/"
-                }
-            ],
-            "description": "Common interface for logging libraries",
-            "keywords": [
-                "log",
-                "psr",
-                "psr-3"
-            ],
-            "time": "2012-12-21 11:40:51"
         },
         {
             "name": "satooshi/php-coveralls",
