@@ -28,7 +28,7 @@ abstract class BaseTest extends PHPUnit_Framework_TestCase
             if (is_array($item)) {
                 $this->assertArrayMatches($expected[$key], $actual[$key], $name, $levels);
             } else {
-                $this->assertEquals($item, $actual[$key],  "Item has wrong value in {$name}: ".$levelsString);
+                $this->assertEquals($item, $actual[$key], "Item has wrong value in {$name}: ".$levelsString);
             }
         }
     }

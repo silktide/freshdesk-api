@@ -5,7 +5,6 @@
 
 namespace Silktide\FreshdeskApi;
 
-
 abstract class Constant
 {
     /**
@@ -23,5 +22,4 @@ abstract class Constant
     const PRIORITY_MEDIUM = 2;
     const PRIORITY_HIGH = 3;
     const PRIORITY_URGENT = 4;
-
 }

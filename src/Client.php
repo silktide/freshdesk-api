@@ -102,7 +102,10 @@ class Client
     protected function validateDomain($freshdeskDomain)
     {
         if (!preg_match('#^https?://.*\.freshdesk\.com$#', $freshdeskDomain)) {
-            throw new InvalidArgumentException("The domain [{$freshdeskDomain}] was not valid.  Expected to be in the format [http://mydomain.freshdesk.com]");
+            throw new InvalidArgumentException(
+                "The domain [{$freshdeskDomain}] was not valid.  ".
+                "Expected to be in the format [http://mydomain.freshdesk.com]"
+            );
         }
     }
 
@@ -116,7 +119,10 @@ class Client
      * @param int $status
      * @return Response
      */
-    public function submitTicket($description, $subject, $email, $priority = Constant::PRIORITY_LOW, $status = Constant::STATUS_OPEN)
+    public function submitTicket($description, $subject, $email,
+        $priority = Constant::PRIORITY_LOW,
+        $status = Constant::STATUS_OPEN
+    )
     {
         $content = [
             'helpdesk_ticket' => [
@@ -141,11 +147,14 @@ class Client
     protected function makeRequest($method, $endpoint, $content = null)
     {
         $url = $this->freshdeskDomain.$this->endpoints[$endpoint];
-        $response = $this->guzzle->request($method, $url,
+        $response = $this->guzzle->request(
+            $method,
+            $url,
             [
                 'json' => $content,
                 'auth' => [$this->usernameOrToken, $this->password]
-            ]);
+            ]
+        );
 
         return $this->createResponse($response);
     }

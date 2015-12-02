@@ -5,7 +5,6 @@
 
 namespace Silktide\FreshdeskApi;
 
-
 class ResponseFactory
 {
     /**

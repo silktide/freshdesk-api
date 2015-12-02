@@ -18,7 +18,7 @@ abstract class ClientFactory
      * @param string $password
      * @return Client
      */
-    static public function create($freshdeskDomain, $usernameOrToken, $password = "X")
+    public static function create($freshdeskDomain, $usernameOrToken, $password = "X")
     {
         $guzzle = new Guzzle();
         $responseFactory = new ResponseFactory();

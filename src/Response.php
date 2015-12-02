@@ -5,7 +5,6 @@
 
 namespace Silktide\FreshdeskApi;
 
-
 class Response
 {
     /**
@@ -51,5 +50,4 @@ class Response
     {
         return json_decode($this->data, true);
     }
-
 }
