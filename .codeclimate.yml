@@ -12,3 +12,4 @@ ratings:
   - "**.inc"
 exclude_paths:
 - test/**/*
+- ".codeclimate.yml"
