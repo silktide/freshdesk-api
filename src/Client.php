@@ -119,11 +119,13 @@ class Client
      * @param int $status
      * @return Response
      */
-    public function submitTicket($description, $subject, $email,
+    public function submitTicket(
+        $description,
+        $subject,
+        $email,
         $priority = Constant::PRIORITY_LOW,
         $status = Constant::STATUS_OPEN
-    )
-    {
+    ) {
         $content = [
             'helpdesk_ticket' => [
                 "description" => $description,
