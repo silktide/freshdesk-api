@@ -1,5 +1,5 @@
 {
-  "name": "Freshdesk API",
+  "name": "silktide/freshdesk-api",
   "description": "PHP API library for Freshdesk",
   "license": "GPL-2.0+",
   "authors": [
