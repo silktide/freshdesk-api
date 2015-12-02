@@ -10,8 +10,7 @@
   ],
   "require": {
     "php": ">=5.5.0",
-    "guzzle/guzzle": "~3.9",
-    "monolog/monolog": "^1.13"
+    "guzzlehttp/guzzle": "^6.1"
   },
   "autoload": {
     "psr-4": {
