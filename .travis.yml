@@ -1,0 +1,9 @@
+language: php
+php:
+- 5.5
+
+install: composer install
+script: phpunit --coverage-clover build/logs/clover.xml
+addons:
+    code_climate:
+        repo_token: cec37d903da9b33447a89a199d9e3039e568c739ca797cbb74bbac1793c43ad0
