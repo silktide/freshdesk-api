@@ -37,7 +37,7 @@ Currently, this library only supports submitting a ticket.
     $client->submitTicket(
         'A message',
         'A subject',
-        'email@domain.com",
+        'email@domain.com',
         \Silktide\FreshdeskApi\Constant::PRIORITY_MEDIUM, // Defaults to low if omitted
         \Silktide\FreshdeskApi\Constant::STATUS_OPEN // Defaults to open if omitted
     );
