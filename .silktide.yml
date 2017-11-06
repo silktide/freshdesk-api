@@ -1,4 +1,7 @@
 ---
+app: freshdesk-api
 type: deprecated
 source: open
+language: php
+protected: false
 ...
